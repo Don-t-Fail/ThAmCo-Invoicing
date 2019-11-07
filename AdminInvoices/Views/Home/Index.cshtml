@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+
+
+        <input type="button" value="Pending Invoices" onclick="location.href='@Url.Action("pending", "Invoice")'" />
+        <input type="button" value="Pending Orders" onclick="location.href='@Url.Action("pending", "Orders")'" />
+
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    </div>
