@@ -19,9 +19,9 @@ namespace AdminInvoices.Controllers
 
         public async Task<IActionResult> Pending()
         {
-            //needs toget orders where invoiced= true AND disptched= false
+            //needs to get orders where invoiced= true AND disptched= false
 
-           //where order.invoiced = rue && where order.Dispatched = False
+           //where order.invoiced = True && where order.Dispatched = False
 
             return View(await .ToListAsync());
         }
