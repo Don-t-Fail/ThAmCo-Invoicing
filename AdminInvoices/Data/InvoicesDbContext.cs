@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 
@@ -42,12 +39,13 @@ namespace AdminInvoices.Data
             builder.Entity<Customer>()
                    .HasMany(c => c.Orders)
                    .WithOne(b => b.Customer)
-                   .HasForeignKey(b => b.CustomerId);       //TODO: fix by replacing with accutal things
+                   .HasForeignKey(b => b.CustomerId);
 
-            builder.Entity<Order>()
-                   .HasOne(e => e.Invoice)
-                   .WithOne(b => b.Order);
-
+            builder.Entity<Invoice>()
+                   .HasOne(e => e.Order)
+                   //.HasForeignKey<Invoice>(b => b.OrderId)
+                   ;
+            
 
 
             // seed data for debug / development testing
@@ -60,12 +58,14 @@ namespace AdminInvoices.Data
                 );
 
                 builder.Entity<Order>().HasData(
-                    new Order { Id = 1, Invoiced = false, Dispatched = false, CustomerId = 2, InvoiceId = 1 },
+                    new Order { Id = 1, Invoiced = false, Dispatched = false, CustomerId = 2, InvoiceId = -1 },
                     new Order { Id = 2, Invoiced = true, Dispatched = false, CustomerId = 2, InvoiceId = 2 },
-                    new Order { Id = 3, Invoiced = true, Dispatched = true, CustomerId = 3, InvoiceId = 3 }
+                    new Order { Id = 3, Invoiced = true, Dispatched = true, CustomerId = 3, InvoiceId = 3 },
+                    new Order { Id = 4, Invoiced = true, Dispatched = false, CustomerId = 1, InvoiceId = 4 }
                  );
 
                 builder.Entity<Invoice>().HasData(
+                    new Invoice { Id = -1, OrderId = -1, CustomerId = -1, Sent = false }, 
                     new Invoice { Id = 1, OrderId = 2, CustomerId = 2, Sent = false },
                     new Invoice { Id = 2, OrderId = 2, CustomerId = 2, Sent = true },
                     new Invoice { Id = 3, OrderId = 3, CustomerId = 3, Sent = true }

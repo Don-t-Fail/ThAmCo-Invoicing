@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AdminInvoices
 {
@@ -16,7 +18,7 @@ namespace AdminInvoices
 
         public int? InvoiceId { get; set; }
 
-        public Invoice Invoice { get; set; }
+        
 
         //array of products in order??
 

@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.EntityFrameworkCore;
+using AdminInvoices.Data;
+//Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions;
 namespace AdminInvoices
 {
     public class Startup
@@ -36,8 +38,9 @@ namespace AdminInvoices
 
             services.AddDbContext<InvoicesDbContext>(options =>
             {
-                var cs = Configuration.GetConnectionString("EventsSqlConnection");
-                options.UseSqlServer(cs);
+                var cs = Configuration.GetConnectionString("AdminInvoicesSqlConnection");
+                options.UseSqlServer("cs");
+                
             });
         }
 
