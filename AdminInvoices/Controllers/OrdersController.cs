@@ -35,7 +35,7 @@ namespace AdminInvoices.Controllers
                 .Where(g => g.Invoiced == true)
                 .Where(g => g.Dispatched == false);
 
-            return View(await invoicesDbContext.ToListAsync());
+            return View( invoicesDbContext);
             
         }
     }
